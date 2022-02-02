@@ -1,0 +1,708 @@
+/* ----- BASE ----- */
+html{
+    font-size: 16px;
+}
+body{
+    -webkit-font-smoothing: antialiased;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem;
+    line-height: 2rem;
+}
+.page-wrap{
+    overflow: hidden;
+    position: relative;
+}
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+a:hover{
+    text-decoration: none;
+    color: inherit;
+}
+img{
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+/* ----- /BASE ----- */
+/*  */
+/* ----- TYPOGRAPHY ----- */
+.h1, h1 {
+    font-size: 4.3rem;
+    font-weight: 400;
+    line-height: 5.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 5.9rem;
+}
+h2, .h2{
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+}
+.h5, h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    margin-bottom: 0.6rem;
+}
+/* ----- TYPOGRAPHY ----- */
+/*  */
+/* ----- BUTTONS ----- */
+.btn{
+    font-weight: 400;
+    font-size: 1.25rem;
+    border-radius: 0.75rem;
+    padding: 1.3rem 2.1rem;
+}
+.btn:hover, .btn:focus{
+    box-shadow: none;
+}
+.btn-gradient {
+    color: #fff;
+    background: linear-gradient(40deg, #f2273a 30%, #fe8c01);
+    border: 0;
+}
+.btn i {
+    margin-left: 0.5rem;
+}
+.btn-gray-outline {
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid #eeeeee;
+    padding: 0.5rem 0.9rem;
+    border-radius: 2rem;
+    margin-left: 1.4rem;
+}
+.btn-secondary {
+    background-color: #f8f8f8;
+    border-color: #f8f8f8;
+    color: #000;
+    font-weight: 500;
+    border-radius: 1rem;
+    font-size: 1.125rem;
+    padding: 1.1rem 1.6rem;
+}
+.btn-secondary:hover {
+    background-color: #f8f8f8;
+    border-color: #f8f8f8;
+    color: #000;
+}
+.btn-black{
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    padding: 0.8rem 1.6rem;
+    font-weight: 600;
+}
+/* ----- /BUTTONS ----- */
+/*  */
+/* ----- HEADER ----- */
+.header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    padding: 2.8rem 0rem;
+}
+.header .menu{
+    display: flex;
+    flex-wrap: wrap;
+}
+.header .menu a{
+    color: white;
+    font-size: 1.0625rem;
+    letter-spacing: 0.1px;
+}
+.header .menu-btn {
+    display: none;
+}
+.header .menu li{
+    font-weight: 500;
+}
+.header .logo {
+    display: block;
+    width: 8.1rem;
+    position: relative;
+    z-index: 10;
+}
+.header .header-links {
+    position: relative;
+    z-index: 10;
+}
+.header .logo img {
+    width: 100%;
+}
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.header .link {
+    font-weight: 600;
+    margin-right: 1.6rem;
+}
+.header .header-nav {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+}
+.header .menu li {
+    margin: 0 0.7rem;
+}
+.header .btn-black {
+    color: #fff;
+}
+/* ----- /HEADER ----- */
+/*  */
+/* ----- SECTION BANNER ----- */
+.section-banner{
+    background: linear-gradient(to bottom, #dcd5cc, #eecfbf);
+    height: 60rem;
+    padding-top: 15.5rem;
+}
+.section-banner p{
+    font-size: 1.25rem;
+    line-height: 2rem;
+    color: rgb(0 0 0 / 50%);
+}
+.section-banner p img {
+    width: 1.2rem;
+    height: 1.2rem;
+    object-fit: contain;
+    margin-right: 0rem;
+    display: inline-block;
+    vertical-align: -0.15rem;
+}
+.section-banner .image-wrap img {
+    position: absolute;
+    width: 42rem;
+    top: 8.4rem;
+    margin-left: -1.1rem;
+}
+.section-banner .image-wrap .btn-gradient{
+    display: none;
+}
+/* ----- /SECTION BANNER ----- */
+/*  */
+/* ----- SECTION PRODUCTS ----- */
+.section-products {
+    padding-top: 1.5rem;
+    padding-bottom: 1.8rem;
+}
+.section-products .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.section-products .title h2 {
+    margin-bottom: -0.5rem;
+}
+.section-products .title .col{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.section-products .title  .right-col{
+    justify-content: flex-end;
+}
+.product-item {
+    display: block;
+}
+.product-item .product-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.3rem 0;
+    height: 19rem;
+    border-radius: 1rem;
+    position: relative;
+}
+.product-item .product-img img {
+    width: auto;
+    max-width: 80%;
+    object-fit: contain;
+    min-width: 53%;
+    max-height: 100%;
+}
+.product-item .product-img .label {
+    position: absolute;
+    left: 1.1rem;
+    top: 1rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #ee748f;
+    font-size: 0.875rem;
+}
+.owl-nav {
+    display: flex;
+    align-items: center;
+    margin-right: 0.4rem;
+    margin-left: 0.9rem;
+}
+.owl-nav button.owl-prev, .owl-nav button.owl-next {
+    border-radius: 50%;
+    border: 1px solid #f1f1f1;
+    background-color: #fff;
+    font-size: 1.1rem;
+    height: 2.6rem;
+    width: 2.6rem;
+    margin-left: 0.7rem;
+}
+.product-item .product-title {
+    padding: 1.2rem 1.2rem;
+}
+.product-item .product-title .category {
+    color: #8f9a9b;
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.product-item .product-title .price {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.product-item .product-title .price span {
+    color: #8f9a9b;
+    font-weight: 500;
+    font-size: 0.75rem;
+    margin-left: 0.4rem;
+    letter-spacing: 0.9px;
+}
+.dropdown {
+    margin-left: 1.4rem;
+}
+.dropdown-toggle::after {
+    content: '\f078';
+    border: 0;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-left: 0.6rem;
+    vertical-align: 0rem;
+    margin-right: 0.3rem;
+}
+.section-products .title .left-col {
+    flex: 0 0 auto;
+}
+/* ----- /SECTION PRODUCTS ----- */
+/*  */
+/* ----- MEDIA ----- */
+@media(max-width: 1439px){
+    /* ----- SECTION BANNER ----- */
+    .section-banner .image-wrap img {
+        width: 35rem;
+    }
+    /* ----- /SECTION BANNER ----- */
+    /*  */
+}
+@media(max-width: 1199px){
+    .h1, h1 {
+        margin-bottom: 2.9rem;
+    }
+    .header .menu li {
+        margin: 0 0.3rem;
+    }
+    .header .link, .header .btn-black {
+        font-size: 0.875rem;
+    }
+    .header .link {
+        margin-right: 1.3rem;
+    }
+    /* ----- SECTION BANNER ----- */
+    .section-banner .image-wrap img {
+        width: 31rem;
+    }
+    .section-banner {
+        padding-top: 12.5rem;
+        height: 54rem;
+    }
+    /* ----- /SECTION BANNER ----- */
+    /*  */
+    /* ----- SECTION PRODUCTS ----- */
+    .product-item .product-img {
+        height: 16rem;
+    }
+    /* ----- /SECTION PRODUCTS ----- */
+    /*  */
+}
+@media(max-width: 1023px){
+    .h1, h1 {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+    h2, .h2 {
+        font-size: 1.7rem;
+        line-height: 2.5rem;
+    }
+    .btn {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+    }
+    .btn-gray-outline {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.9rem;
+        margin-left: 0;
+        margin-right: 1rem;
+    }
+    .btn-secondary {
+        font-size: 0.875rem;
+        padding: 0.9rem 1.1rem;
+    }
+    /* ----- HEADER ----- */
+    .header .menu-btn {
+        position: relative;
+        width: 1.5rem;
+        height: 1.2rem;
+        margin-left: 1.7rem;
+        display: block;
+        z-index: 200;
+    }
+    .btn-black {
+        padding: 0.6rem 1.2rem;
+    }
+    .header .header-nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: 0.4s;
+        max-height: 0;
+        height: auto;
+        visibility: hidden;
+        background-color: #ddd5cc;
+        align-items: center;
+        overflow: hidden;
+        opacity: 0;
+        z-index: 100;
+    }
+    .header .container {
+        justify-content: flex-end;
+    }
+    .header .logo {
+        margin-right: auto;
+    }
+    .header .menu-btn span {
+        width: 1.5rem;
+        height: 2px;
+        background-color: #000;
+        display: block;
+        margin-bottom: 0.4rem;
+        border-radius: 1rem;
+    }
+    .header .menu-btn span:last-child{
+        margin-bottom: 0;
+    }
+    .header.menu-open .header-nav {
+        visibility: visible;
+        max-height: 100vh;
+        opacity: 1;
+    }
+    .header .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header .menu li {
+        margin-bottom: 1rem;
+    }
+    .header.menu-open .menu-btn span {
+        transform: rotate(45deg);
+        position: absolute;
+        top: 0.6rem;
+    }
+    .header.menu-open .menu-btn span:nth-child(2) {
+        display: none;
+    }
+    .header.menu-open .menu-btn span:last-child {
+        transform: rotate(-45deg);
+    }
+    
+    /* ----- /HEADER ----- */
+    /*  */
+    /* ----- SECTION BANNER ----- */
+    .section-banner {
+        padding-top: 9.5rem;
+        height: 41rem;
+    }
+    .section-banner .image-wrap img {
+        width: 25rem;
+    }
+    .section-banner p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+    /* ----- /SECTION BANNER ----- */
+    /*  */
+    /* ----- SECTION PRODUCTS ----- */
+    .section-products .title h2 {
+        margin: 0;
+    }
+    .dropdown {
+        margin-left: 1rem;
+    }
+    .section-products .title .right-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    .section-products .title {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .product-item {
+        margin-bottom: 1.5rem;
+    }
+    .section-products {
+        padding-bottom: 1rem;
+    }
+    /* ----- /SECTION PRODUCTS ----- */
+    /*  */
+}
+@media(max-width: 767px){
+    .h1, h1 {
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+    .btn-gradient i {
+        display: none;
+    }
+    .btn {
+        border-radius: 0.5rem;
+    }
+    /* ----- HEADER ----- */
+    .header {
+        padding: 0.9rem 0.6rem;
+    }
+    .header .logo {
+        width: 4.6rem;
+    }
+    .header .menu-btn {
+        width: 1.1rem;
+        height: 1rem;
+    }
+    .header .menu-btn span {
+        width: 1.2rem;
+        margin-bottom: 0.32rem;
+    }
+    .header .link, .header .btn-black {
+        font-size: 0.75rem;
+    }
+    .header .link {
+        margin-right: 0.8rem;
+    }
+    /* ----- /HEADER ----- */
+    /*  */
+    /* ----- SECTION BANNER ----- */
+    .section-banner .image-wrap img {
+        position: static;
+        width: 16.8rem;
+        margin-bottom: 1rem;
+    }
+    .section-banner {
+        text-align: center;
+        padding-top: 5.7rem;
+        height: 40.4rem;
+    }
+    .section-banner p {
+        font-size: 0.625rem;
+        line-height: 1.5rem;
+        margin-bottom: 0.1rem;
+    }
+    .section-banner p img {
+        width: 0.625rem;
+        height: 0.625rem;
+        vertical-align: -0.05rem;
+    }
+    .section-banner .btn-gradient{
+        display: none;
+    }
+    .section-banner .image-wrap .btn-gradient{
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.8rem;
+    }
+    /* ----- /SECTION BANNER ----- */
+    /*  */
+    /* ----- SECTION PRODUCTS ----- */
+    .section-products .title {
+        text-align: center;
+    }
+    .btn-gray-outline {
+        margin: 0 0.4rem 0;
+    }
+    .owl-nav {
+        margin: 1rem auto 0;
+        flex: 0 0 100%;
+        max-width: 100%;
+        justify-content: center;
+    }
+    .owl-nav button.owl-prev, .owl-nav button.owl-next {
+        margin: 0 0.35rem;
+    }
+    .section-products .title .left-col {
+        flex-direction: column;
+    }
+    .dropdown {
+        margin: 1rem auto 0.5rem;
+    }
+    /* ----- /SECTION PRODUCTS ----- */
+    /*  */
+}
+.footer {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 30px 30px 20px 30px;
+    color: #2f2f2f;
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  .footer > * {
+    flex:  1 100%;
+  }
+  
+  .footer__addr {
+    margin-right: 1.25em;
+    margin-bottom: 2em;
+  }
+  
+  .footer__logo {
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+  
+  .footer__addr h2 {
+    margin-top: 1.3em;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .nav__title {
+    font-weight: 400;
+    font-size: 15px;
+  }
+  
+  .footer address {
+    font-style: normal;
+    color: #999;
+  }
+  
+  .footer__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    max-width: max-content;
+    background-color: rgb(33, 33, 33, 0.07);
+    border-radius: 100px;
+    color: #2f2f2f;
+    line-height: 0;
+    margin: 0.6em 0;
+    font-size: 1rem;
+    padding: 0 1.3em;
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .footer li {
+    line-height: 2em;
+  }
+  
+  .footer a {
+    text-decoration: none;
+  }
+  
+  .footer__nav {
+    display: flex;
+      flex-flow: row wrap;
+  }
+  
+  .footer__nav > * {
+    flex: 1 50%;
+    margin-right: 1.25em;
+  }
+  
+  .nav__ul a {
+    color: #999;
+  }
+  
+  .nav__ul--extra {
+    column-count: 2;
+    column-gap: 1.25em;
+  }
+  
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    color: #999;
+  }
+    
+  .legal__links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .heart {
+    color: #2f2f2f;
+  }
+  
+  @media screen and (min-width: 24.375em) {
+    .legal .legal__links {
+      margin-left: auto;
+    }
+  }
+  
+  @media screen and (min-width: 40.375em) {
+    .footer__nav > * {
+      flex: 1;
+    }
+    
+    .nav__item--extra {
+      flex-grow: 2;
+    }
+    
+    .footer__addr {
+      flex: 1 0px;
+    }
+    
+    .footer__nav {
+      flex: 2 0px;
+    }
+  }
+/* ----- /MEDIA ----- */
+/*  */
+
+/* ----- /MEDIA ----- */
+/*  */

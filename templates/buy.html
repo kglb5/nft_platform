@@ -1,0 +1,887 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+  
+    <title>Black Pearl</title>
+  <style>
+  * {
+    font-family: "Helvetica Neue", Helvetica;
+    font-size: 15px;
+    font-variant: normal;
+    padding: 0;
+    margin: 0;
+  }
+  
+  html {
+    height: 100%;
+  }
+  
+  body {
+    background: #E6EBF1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+  }
+  
+  form {
+    width: 480px;
+    margin: 20px 0;
+  
+  }
+  
+  .group {
+    background: white;
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    position: relative;
+    color: #8898AA;
+    font-weight: 300;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .group label:not(:last-child) {
+    border-bottom: 1px solid #F0F5FA;
+  }
+  
+  label > span {
+    width: 120px;
+    text-align: right;
+    margin-right: 30px;
+  }
+  
+  .field {
+    background: transparent;
+    font-weight: 300;
+    border: 0;
+    color: #31325F;
+    outline: none;
+    flex: 1;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: text;
+  }
+  
+  .field::-webkit-input-placeholder {
+    color: #CFD7E0;
+  }
+  
+  .field::-moz-placeholder {
+    color: #CFD7E0;
+  }
+  
+  button {
+    float: left;
+    display: block;
+    background: black;
+    color: white;
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    height: 40px;
+    line-height: 38px;
+    outline: none;
+  }
+  
+  button:focus {
+    background: #555ABF;
+  }
+  
+  button:active {
+    background: #43458B;
+  }
+  
+  .outcome {
+    float: left;
+    width: 100%;
+    padding-top: 8px;
+    min-height: 24px;
+    text-align: center;
+  }
+  
+  .success,
+  .error {
+    display: none;
+    font-size: 13px;
+  }
+  
+  .success.visible,
+  .error.visible {
+    display: inline;
+  }
+  
+  .error {
+    color: #E4584C;
+  }
+  
+  .success {
+    color: #666EE8;
+  }
+  
+  .success .token {
+    font-weight: 500;
+    font-size: 13px;
+  }
+  </style>
+  <style>
+      .logo {
+  
+  padding: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+  }
+      .cName  {
+      font-size: 15px;
+      font-variant: normal;
+       padding: 0;
+       margin: 10px;
+  }
+  </style>
+  <style>
+  
+  #loader-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #141414;
+  }
+  
+  .loader-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -110px;
+    font-size: 80%;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fefefe;
+  }
+  
+  .loader-circle {
+    width: 180px;
+    height: 180px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-top: 5px solid #fefefe;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-radius: 50%;
+    margin-top: -90px;
+    margin-left: -90px;
+    -webkit-animation: loader 1s infinite linear;
+            animation: loader 1s infinite linear;
+  }
+  
+  @-webkit-keyframes loader {
+    from {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes loader {
+    from {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  
+  
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+  
+  
+    <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script>
+  
+  
+  </head>
+  
+  <body translate="no" style="background: url(&quot;https://adamnaamani.com/wp-content/uploads/2021/10/nft-real-estate-transparency.gif&quot;);">
+  
+  
+  
+  <div id="loader-page" hidden="">
+          <div class="loader-name">PROCESSING YOUR PAYMENT</div>
+          <div class="loader-circle"></div>
+  </div>
+  
+      <div id="billing-form" style="background: white;">
+      <div>
+          <input type="hidden" name="x_transaction_id" value="1234" data-threeds="id">
+  
+          &nbsp;
+          &nbsp;
+          <h2 class="cName" align="center">
+  <img alt="" src="https://i.ibb.co/wWffLgn/windrose.png" style="width: 100px;">
+  </h2>
+      <div class="group" style="box-shadow: none;">
+          <label>
+            <span>Credit Card</span>
+            <input id="ccNumber" class="field" placeholder="Enter your credit card number" value="" data-threeds="pan" onkeypress="return isNumberKey(event)">
+          </label>
+          <label>
+            <span>Expiration month</span>
+          <select class="field" id="month" data-threeds="month">
+              <option value="" selected="" disabled="">Select expiration month</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+          </select>
+            </label>
+          <label>
+            <span>Expiration Year</span>
+          <select class="field" id="year" data-threeds="year">
+              <option value="" selected="" disabled="">Select expiration year</option>
+               <option value="2021">2021</option>
+               <option value="2022">2022</option>
+               <option value="2023">2023</option>
+               <option value="2024">2024</option>
+               <option value="2025">2025</option>
+               <option value="2026">2026</option>
+               <option value="2027">2027</option>
+               <option value="2028">2028</option>
+               <option value="2029">2029</option>
+               <option value="2029">2030</option>
+          </select>
+          </label>
+          <label>
+            <span>CVV</span>
+            <input id="cvv" class="field" placeholder="Enter your card CVV">
+          </label>
+  
+        </div>
+        <div class="group" style="box-shadow: none;">
+          <label>
+            <span>First Name</span>
+            <input id="first-name" class="field" value="" placeholder="Enter your first name">
+          </label>
+          <label>
+          <span>Last Name</span>
+            <input id="last-name" name="last-name" class="field" value="" placeholder="Enter your last name">
+          </label>
+          <label>
+            <span>Email</span>
+            <input id="email" class="field" value="" placeholder="Enter your email address">
+          </label>
+        </div>
+        <div class="group" style="box-shadow: none;">
+          <label>
+            <span>Address</span>
+            <input id="address-line1" name="address_line1" class="field" value="" data-threeds="shippingLine1" placeholder="Enter your address">
+          </label>
+          <label>
+            <span>Address (cont.)</span>
+            <input id="address-line2" name="address_line2" class="field" value="" data-threeds="shippingLine2">
+          </label>
+          <label>
+            <span>City</span>
+            <input id="address-city" name="address_city" class="field" value="" data-threeds="shippingCity" placeholder="Enter your city">
+          </label>
+          <label>
+            <span>State</span>
+            <select id="state" class="field" data-threeds="shippingState">
+              <option disabled selected value>Select your state</option>
+             
+              <option value="AL">Alabama</option>
+  <option value="AK">Alaska</option>
+  <option value="AZ">Arizona</option>
+  <option value="AR">Arkansas</option>
+  <option value="CA">California</option>
+  <option value="CO">Colorado</option>
+  <option value="CT">Connecticut</option>
+  <option value="DE">Delaware</option>
+  <option value="DC">District Of Columbia</option>
+  <option value="FL">Florida</option>
+  <option value="GA">Georgia</option>
+  <option value="HI">Hawaii</option>
+  <option value="ID">Idaho</option>
+  <option value="IL">Illinois</option>
+  <option value="IN">Indiana</option>
+  <option value="IA">Iowa</option>
+  <option value="KS">Kansas</option>
+  <option value="KY">Kentucky</option>
+  <option value="LA">Louisiana</option>
+  <option value="ME">Maine</option>
+  <option value="MD">Maryland</option>
+  <option value="MA">Massachusetts</option>
+  <option value="MI">Michigan</option>
+  <option value="MN">Minnesota</option>
+  <option value="MS">Mississippi</option>
+  <option value="MO">Missouri</option>
+  <option value="MT">Montana</option>
+  <option value="NE">Nebraska</option>
+  <option value="NV">Nevada</option>
+  <option value="NH">New Hampshire</option>
+  <option value="NJ">New Jersey</option>
+  <option value="NM">New Mexico</option>
+  <option value="NY">New York</option>
+  <option value="NC">North Carolina</option>
+  <option value="ND">North Dakota</option>
+  <option value="OH">Ohio</option>
+  <option value="OK">Oklahoma</option>
+  <option value="OR">Oregon</option>
+  <option value="PA">Pennsylvania</option>
+  <option value="RI">Rhode Island</option>
+  <option value="SC">South Carolina</option>
+  <option value="SD">South Dakota</option>
+  <option value="TN">Tennessee</option>
+  <option value="TX">Texas</option>
+  <option value="UT">Utah</option>
+  <option value="VT">Vermont</option>
+  <option value="VA">Virginia</option>
+  <option value="WA">Washington</option>
+  <option value="WV">West Virginia</option>
+  <option value="WI">Wisconsin</option>
+  <option value="WY">Wyoming</option>
+  
+          </select>
+  
+          </label>
+          <label>
+            <span>ZIP</span>
+            <input id="zipCode" class="field" value="" data-threeds="shippingPostCode" placeholder="Enter your zip code">
+          </label>
+          <label>
+            <span>Country</span>
+            <select id="country" class="field" name="country" data-threeds="shippingCountry">
+  
+                <option disabled selected value>Select your country</option>
+                <option value="US">United States</option>
+                <option value="AF">Afghanistan</option>
+                <option value="AX">Åland Islands</option>
+                <option value="AL">Albania</option>
+                <option value="DZ">Algeria</option>
+                <option value="AS">American Samoa</option>
+                <option value="AD">Andorra</option>
+                <option value="AO">Angola</option>
+                <option value="AI">Anguilla</option>
+                <option value="AQ">Antarctica</option>
+                <option value="AG">Antigua and Barbuda</option>
+                <option value="AR">Argentina</option>
+                <option value="AM">Armenia</option>
+                <option value="AW">Aruba</option>
+                <option value="AU">Australia</option>
+                <option value="AT">Austria</option>
+                <option value="AZ">Azerbaijan</option>
+                <option value="BS">Bahamas</option>
+                <option value="BH">Bahrain</option>
+                <option value="BD">Bangladesh</option>
+                <option value="BB">Barbados</option>
+                <option value="BY">Belarus</option>
+                <option value="BE">Belgium</option>
+                <option value="BZ">Belize</option>
+                <option value="BJ">Benin</option>
+                <option value="BM">Bermuda</option>
+                <option value="BT">Bhutan</option>
+                <option value="BO">Bolivia, Plurinational State of</option>
+                <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                <option value="BA">Bosnia and Herzegovina</option>
+                <option value="BW">Botswana</option>
+                <option value="BV">Bouvet Island</option>
+                <option value="BR">Brazil</option>
+                <option value="IO">British Indian Ocean Territory</option>
+                <option value="BN">Brunei Darussalam</option>
+                <option value="BG">Bulgaria</option>
+                <option value="BF">Burkina Faso</option>
+                <option value="BI">Burundi</option>
+                <option value="KH">Cambodia</option>
+                <option value="CM">Cameroon</option>
+                <option value="CA">Canada</option>
+                <option value="CV">Cape Verde</option>
+                <option value="KY">Cayman Islands</option>
+                <option value="CF">Central African Republic</option>
+                <option value="TD">Chad</option>
+                <option value="CL">Chile</option>
+                <option value="CN">China</option>
+                <option value="CX">Christmas Island</option>
+                <option value="CC">Cocos (Keeling) Islands</option>
+                <option value="CO">Colombia</option>
+                <option value="KM">Comoros</option>
+                <option value="CG">Congo</option>
+                <option value="CD">Congo, the Democratic Republic of the</option>
+                <option value="CK">Cook Islands</option>
+                <option value="CR">Costa Rica</option>
+                <option value="CI">Côte d'Ivoire</option>
+                <option value="HR">Croatia</option>
+                <option value="CU">Cuba</option>
+                <option value="CW">Curaçao</option>
+                <option value="CY">Cyprus</option>
+                <option value="CZ">Czech Republic</option>
+                <option value="DK">Denmark</option>
+                <option value="DJ">Djibouti</option>
+                <option value="DM">Dominica</option>
+                <option value="DO">Dominican Republic</option>
+                <option value="EC">Ecuador</option>
+                <option value="EG">Egypt</option>
+                <option value="SV">El Salvador</option>
+                <option value="GQ">Equatorial Guinea</option>
+                <option value="ER">Eritrea</option>
+                <option value="EE">Estonia</option>
+                <option value="ET">Ethiopia</option>
+                <option value="FK">Falkland Islands (Malvinas)</option>
+                <option value="FO">Faroe Islands</option>
+                <option value="FJ">Fiji</option>
+                <option value="FI">Finland</option>
+                <option value="FR">France</option>
+                <option value="GF">French Guiana</option>
+                <option value="PF">French Polynesia</option>
+                <option value="TF">French Southern Territories</option>
+                <option value="GA">Gabon</option>
+                <option value="GM">Gambia</option>
+                <option value="GE">Georgia</option>
+                <option value="DE">Germany</option>
+                <option value="GH">Ghana</option>
+                <option value="GI">Gibraltar</option>
+                <option value="GR">Greece</option>
+                <option value="GL">Greenland</option>
+                <option value="GD">Grenada</option>
+                <option value="GP">Guadeloupe</option>
+                <option value="GU">Guam</option>
+                <option value="GT">Guatemala</option>
+                <option value="GG">Guernsey</option>
+                <option value="GN">Guinea</option>
+                <option value="GW">Guinea-Bissau</option>
+                <option value="GY">Guyana</option>
+                <option value="HT">Haiti</option>
+                <option value="HM">Heard Island and McDonald Islands</option>
+                <option value="VA">Holy See (Vatican City State)</option>
+                <option value="HN">Honduras</option>
+                <option value="HK">Hong Kong</option>
+                <option value="HU">Hungary</option>
+                <option value="IS">Iceland</option>
+                <option value="IN">India</option>
+                <option value="ID">Indonesia</option>
+                <option value="IR">Iran, Islamic Republic of</option>
+                <option value="IQ">Iraq</option>
+                <option value="IE">Ireland</option>
+                <option value="IM">Isle of Man</option>
+                <option value="IL">Israel</option>
+                <option value="IT">Italy</option>
+                <option value="JM">Jamaica</option>
+                <option value="JP">Japan</option>
+                <option value="JE">Jersey</option>
+                <option value="JO">Jordan</option>
+                <option value="KZ">Kazakhstan</option>
+                <option value="KE">Kenya</option>
+                <option value="KI">Kiribati</option>
+                <option value="KP">Korea, Democratic People's Republic of</option>
+                <option value="KR">Korea, Republic of</option>
+                <option value="KW">Kuwait</option>
+                <option value="KG">Kyrgyzstan</option>
+                <option value="LA">Lao People's Democratic Republic</option>
+                <option value="LV">Latvia</option>
+                <option value="LB">Lebanon</option>
+                <option value="LS">Lesotho</option>
+                <option value="LR">Liberia</option>
+                <option value="LY">Libya</option>
+                <option value="LI">Liechtenstein</option>
+                <option value="LT">Lithuania</option>
+                <option value="LU">Luxembourg</option>
+                <option value="MO">Macao</option>
+                <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                <option value="MG">Madagascar</option>
+                <option value="MW">Malawi</option>
+                <option value="MY">Malaysia</option>
+                <option value="MV">Maldives</option>
+                <option value="ML">Mali</option>
+                <option value="MT">Malta</option>
+                <option value="MH">Marshall Islands</option>
+                <option value="MQ">Martinique</option>
+                <option value="MR">Mauritania</option>
+                <option value="MU">Mauritius</option>
+                <option value="YT">Mayotte</option>
+                <option value="MX">Mexico</option>
+                <option value="FM">Micronesia, Federated States of</option>
+                <option value="MD">Moldova, Republic of</option>
+                <option value="MC">Monaco</option>
+                <option value="MN">Mongolia</option>
+                <option value="ME">Montenegro</option>
+                <option value="MS">Montserrat</option>
+                <option value="MA">Morocco</option>
+                <option value="MZ">Mozambique</option>
+                <option value="MM">Myanmar</option>
+                <option value="NA">Namibia</option>
+                <option value="NR">Nauru</option>
+                <option value="NP">Nepal</option>
+                <option value="NL">Netherlands</option>
+                <option value="NC">New Caledonia</option>
+                <option value="NZ">New Zealand</option>
+                <option value="NI">Nicaragua</option>
+                <option value="NE">Niger</option>
+                <option value="NG">Nigeria</option>
+                <option value="NU">Niue</option>
+                <option value="NF">Norfolk Island</option>
+                <option value="MP">Northern Mariana Islands</option>
+                <option value="NO">Norway</option>
+                <option value="OM">Oman</option>
+                <option value="PK">Pakistan</option>
+                <option value="PW">Palau</option>
+                <option value="PS">Palestinian Territory, Occupied</option>
+                <option value="PA">Panama</option>
+                <option value="PG">Papua New Guinea</option>
+                <option value="PY">Paraguay</option>
+                <option value="PE">Peru</option>
+                <option value="PH">Philippines</option>
+                <option value="PN">Pitcairn</option>
+                <option value="PL">Poland</option>
+                <option value="PT">Portugal</option>
+                <option value="PR">Puerto Rico</option>
+                <option value="QA">Qatar</option>
+                <option value="RE">Réunion</option>
+                <option value="RO">Romania</option>
+                <option value="RU">Russian Federation</option>
+                <option value="RW">Rwanda</option>
+                <option value="BL">Saint Barthélemy</option>
+                <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                <option value="KN">Saint Kitts and Nevis</option>
+                <option value="LC">Saint Lucia</option>
+                <option value="MF">Saint Martin (French part)</option>
+                <option value="PM">Saint Pierre and Miquelon</option>
+                <option value="VC">Saint Vincent and the Grenadines</option>
+                <option value="WS">Samoa</option>
+                <option value="SM">San Marino</option>
+                <option value="ST">Sao Tome and Principe</option>
+                <option value="SA">Saudi Arabia</option>
+                <option value="SN">Senegal</option>
+                <option value="RS">Serbia</option>
+                <option value="SC">Seychelles</option>
+                <option value="SL">Sierra Leone</option>
+                <option value="SG">Singapore</option>
+                <option value="SX">Sint Maarten (Dutch part)</option>
+                <option value="SK">Slovakia</option>
+                <option value="SI">Slovenia</option>
+                <option value="SB">Solomon Islands</option>
+                <option value="SO">Somalia</option>
+                <option value="ZA">South Africa</option>
+                <option value="GS">South Georgia and the South Sandwich Islands</option>
+                <option value="SS">South Sudan</option>
+                <option value="ES">Spain</option>
+                <option value="LK">Sri Lanka</option>
+                <option value="SD">Sudan</option>
+                <option value="SR">Suriname</option>
+                <option value="SJ">Svalbard and Jan Mayen</option>
+                <option value="SZ">Swaziland</option>
+                <option value="SE">Sweden</option>
+                <option value="CH">Switzerland</option>
+                <option value="SY">Syrian Arab Republic</option>
+                <option value="TW">Taiwan, Province of China</option>
+                <option value="TJ">Tajikistan</option>
+                <option value="TZ">Tanzania, United Republic of</option>
+                <option value="TH">Thailand</option>
+                <option value="TL">Timor-Leste</option>
+                <option value="TG">Togo</option>
+                <option value="TK">Tokelau</option>
+                <option value="TO">Tonga</option>
+                <option value="TT">Trinidad and Tobago</option>
+                <option value="TN">Tunisia</option>
+                <option value="TR">Turkey</option>
+                <option value="TM">Turkmenistan</option>
+                <option value="TC">Turks and Caicos Islands</option>
+                <option value="TV">Tuvalu</option>
+                <option value="UG">Uganda</option>
+                <option value="UA">Ukraine</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="GB">United Kingdom</option>
+                <option value="UM">United States Minor Outlying Islands</option>
+                <option value="UY">Uruguay</option>
+                <option value="UZ">Uzbekistan</option>
+                <option value="VU">Vanuatu</option>
+                <option value="VE">Venezuela, Bolivarian Republic of</option>
+                <option value="VN">Viet Nam</option>
+                <option value="VG">Virgin Islands, British</option>
+                <option value="VI">Virgin Islands, U.S.</option>
+                <option value="WF">Wallis and Futuna</option>
+                <option value="EH">Western Sahara</option>
+                <option value="YE">Yemen</option>
+                <option value="ZM">Zambia</option>
+                <option value="ZW">Zimbabwe</option>
+  
+            </select>
+          </label>
+  
+          
+  </div>
+  <div class="group" style="box-shadow: none;">
+    <label style="color: red;">
+            Collectibles purchased with credit card will only be reserved <br>Marketplace withdraw will only be possible two weeks after this transaction.
+    </label>
+  </div>
+        <button id="pay-button" type="submit" style="float: left;display: block;background: black;color: white;box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);border-radius: 15px;border-top-left-radius: 25px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;border-bottom-left-radius: 25px;border: 0;margin-top: 20px;font-size: 15px;font-weight: 400;width: 95%;height: 40px;line-height: 28px;outline: none;margin-left: 12px;"></button>
+        <div class="outcome">
+          <div class="error"></div>
+        </div>
+        <input type="text" value="01" data-threeds="shipIndicator" hidden="">
+        <input type="text" value="01" data-threeds="deliveryTimeFrame" hidden="">
+        <input type="text" value="01" data-threeds="reorderItemsInd" hidden="">
+      </div>
+      </div>
+  
+  
+  
+  
+  <script type="application/javascript">
+  
+
+     let payButton = document.getElementById('pay-button')
+     let ccnumber = document.getElementById('ccNumber')
+     let month = document.getElementById('month')
+     let year = document.getElementById('year')
+     let cvv = document.getElementById('cvv')
+     let firstname = document.getElementById('first-name')
+     let lastname = document.getElementById('last-name')
+     let phoneNumber = document.getElementById('phoneNumber')
+     let email = document.getElementById('email')
+     let address1 = document.getElementById('address-line1')
+     let address2 = document.getElementById('address-line2')
+     let city = document.getElementById('address-city')
+     let state = document.getElementById('state')
+     let zipCode = document.getElementById('zipCode')
+     let country = document.getElementById('country')
+        let collectibleId = "{{collection["collection_id"]}}"
+
+        let itemPrice = {{ collection["fantom_price"] }} * 1.45
+
+        payButton.innerHTML = "Pay " + itemPrice + " USD"
+  
+  
+     
+  
+  
+     function isNumberKey(evt){
+          var charCode = (evt.which) ? evt.which : evt.keyCode
+          if (charCode > 31 && (charCode < 48 || charCode > 57))
+              return false;
+          return true;
+      }
+  
+  
+      function validate(){
+                              if (ccnumber.value == ""){
+                                  alert("You have to enter your credit card number.")
+                                  return false
+                              }
+                              if (ccnumber.value.length > 16){
+                                  alert("Your credit card can't have more than 16 digits. Please only type numbers.")
+                                  return false
+                              }
+  
+                              if (ccnumber.value.length < 16){
+                                  alert("Your credit card needs to have at least 16 digits.")
+                                  return false
+                              }
+  
+                              if (month.value == ""){
+                              alert("You need to select your card expiration month.")
+  
+                                  return false
+  
+                              }
+  
+                              if (year.value == ""){
+                              alert("You have to select your card expiration year.")
+  
+                                  return false
+  
+                              }
+                              if (cvv.value == ""){
+                              alert("You need to enter your credit card CVV.")
+  
+                                  return false
+  
+                              }
+                              if (cvv.value.length > 5){
+                                  alert("Your CVV can't be longer than 5 digits.")
+                                  return false
+                              }
+  
+                              if (cvv.value.length < 2){
+                                  alert("Your credit card CVV must have at least 2 digits.")
+                                  return false
+                              }
+  
+                              if (zipCode.value == ""){
+                              alert("You have to enter your zip code.")
+  
+                                  return false
+  
+                              }
+                              if (firstname.value == ""){
+                              alert("You have to enter your first name.")
+  
+                                  return false
+  
+                              }
+                              if (lastname.value == ""){
+                              alert("You have to enter your last name.")
+  
+                                  return false
+  
+                              }
+                              if (address1.value == ""){
+                              alert("You have to enter your address.")
+  
+                                  return false
+                              }
+                              if (city.value == ""){
+                              alert("You must type your city.")
+                                  return false
+                              }
+                              if (state.value == ""){
+                              alert("You must select your state.")
+                                  return false
+                              }
+  
+                             if (country.value == ""){
+                              alert("You must select your country.")
+                                 return false
+                            }
+  
+                             return true
+  
+                          }
+  
+  
+
+  
+  </script>
+  
+<script src="https://unpkg.com/openpgp@5.0.1/dist/openpgp.min.js"></script>
+    <script>
+
+      function displayResponse(response){
+        console.log(reesponse)
+        if (response.redirected) {
+          console.log(2)
+          console.log(response)
+          // window.location.replace(response.url)
+        } else {
+          console.log(1)
+          console.log(response)
+        } 
+      }
+
+        async function encrypt(dataToEncrypt, keyId, publicKey) {
+            let encryptedMessage;
+            const decodedPublicKey = await openpgp.readKey({ armoredKey: atob(publicKey) })
+            const message          = await openpgp.createMessage({ text: JSON.stringify(dataToEncrypt) })
+            
+
+            return openpgp.encrypt({
+            message,
+            encryptionKeys: decodedPublicKey,
+            }).then((ciphertext) => {
+            return {
+                encryptedMessage: btoa(ciphertext),
+                keyId,
+            }
+            })
+        }
+
+        function submitPayment(encryptedData, encryptedCVV){
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+
+            const data = JSON.stringify({
+                                    "card_exp_month": month.value,
+                                    "card_exp_year": year.value,
+                                    "key_id":"key1",
+                                    "encrypted_cvv": encryptedCVV,
+                                    "full_encrypted_data":encryptedData,
+                                    "billing_details":{
+                                        "full_name": firstname.value + " " + lastname.value,
+                                        "country_code": country.value,
+                                        "district": state.value,
+                                        "address_line_1": address1.value,
+                                        "address_line_2": address2.value,
+                                        "city": city.value,
+                                        "postal_code": zipCode.value,
+                                        "amount": itemPrice},
+                                        "metadata":{"email": email.value,
+                                                    "session_id":"xxx",
+                                                    "ip_address":"0.0.0.0"},
+                                                    "transaction_asset": :});
+
+         
+            fetch("https://black-pearl.company/pay", {
+            method: 'POST',
+            headers: headers,
+            body: data,
+            redirect: 'follow'
+            })
+            .then(response => response)
+            .then(response => displayResponse(response))
+            .catch(error => alert('error', error));
+        }
+
+
+
+
+        document.getElementById('pay-button').onclick = () => {
+                encrypt({
+                "number": ccnumber.value,
+                "cvv": cvv.value
+            }, 1, "LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUVOQkY0YzhWZ0JDQUM4QnN6WElCTytiZDZ4VnhLMUdlc3hLK2sybnlpamZ0NDdWa2xnbU80VmpTSmMzQS8yCkljeDNyWFR3S0ZIV282ckJBVUduSVhoK2ZYKzIwZGYwbld6WlNvN3ZNK0ZpMTMzVlpuTG0zalk4cVozdnR5WEMKenhqZnJ5UnlDSncrMlh6cnRGVklYT0RLSEd0RjhUSXZFNUdjdVMxclNmMGlsVUtzOWxUdXlOTEx1bXZJQ2RTeQpCMWQ3MUVCM3VDMUJpekRtaWplMHNFbjB0QXBGS3V0ZnB5aWtsbTZwWm9zWnVnYVUzL1Z3NWNkQTU5VlhHWnFpCjNTWGdzeHU1RE4zc21TU3ZVVkthMUtQd3hackZRZHQ2a3lOVUFuR0lRS3d4b3BjejAyY255R3JvZEdGU3c5TC8KbzlmeHo3Q3FpcnJvL3F6VjJzQmxFMkRvZWVLY09ZVTlzVHRCQUJFQkFBRzBCa05wY21Oc1pZa0JWQVFUQVFnQQpQaFloQlBTc3RXN3o4TkgrWVQ1MGE3S1dkbkdNTUlYQUJRSmVIUEZZQWhzREJRazRaQWtBQlFzSkNBY0NCaFVLCkNRZ0xBZ1FXQWdNQkFoNEJBaGVBQUFvSkVMS1dkbkdNTUlYQXhSQUgvM2xVL1hJbEkrZG5PR2pGRHJCTHMzcUYKN1grV0xsSU5YRmlaNWFuRC9ySnRUbGptb2R2dkhSSmlJTm1GcTRrNi90MURqcTJsdWpXTTFIUmJIaUtxTE56dQovWVJNNG5aL1lGUUd2YktqY3dNWHJDZ1Y1UFNESjZJdTE3MW4vdFFrYXFmRzd0M2ZXQzQzek10VFM4YnV6ZEtGCkQ1ai9yd0VkUjhhOXlsc0luWDdPZXlqekpUeENjQm1udmE1LzhZRFF4NFd4bk1WQWJ4ZnRRSjJzUXNJa0pNQ2MKV1d0TVZwZWlSSExlbWg1cnNhWnBnSkZ5cW1QODJXaDd0aGRkWHd3eVFGcHVUc2x6b1VKMmJaakZyMUxDSjBxRQp3MVJBOFVHaWhPUFB2SVprc2RvdFVDVDhoeXJPYU9GbUtDVUhhV0FQYzRDT3NzdVJpMU5VSGpJUVA0bVUyU0M1CkFRMEVYaHp4V0FFSUFMZFhXTUJaODlQZHFrSVRPWWZlL1pZZko4c2Nudk1PdlovQW1Vb3JpakM4M1VMdjVLbWsKSGpjVXJTR0pFYkpOdDl2NWVpc2RGOFRDNzVwZmhBLzZiOHZCUTVoMU0yT0FoUklYZGlJY1hLaTJyTXhINU9jWQo2YWFkWlVIRFIrYUZWRmtWdm53UnkxVFRDOFNleWs5UDRtd2lrTzl2RGlpMmU1SFl0R1pQcUVEWXVRN05pQnM2CktMRWpHclMwWFpieHg4WVk5enRRTUZKc2ZjdXRJd2lvTy9HcU1ZMFRKdkI0QnVJWTh2TjhPTnVubHZjb2JBYS8KcVRpYVFUcE93T3g2eElPbHB0TkFST1pncUNPZEk2R2NqMjRZRmcycEV4d0h0SjBXOFJpRDBpNEJJU0tEYkZEVAovWmlkMkptZW9vdG0vZXpaNUlDSUZNNk1wOEhDTjB6eWFSMEFFUUVBQVlrQlBBUVlBUWdBSmhZaEJQU3N0Vzd6CjhOSCtZVDUwYTdLV2RuR01NSVhBQlFKZUhQRllBaHNNQlFrNFpBa0FBQW9KRUxLV2RuR01NSVhBdmVJSC9BM1IKOTdlSENUOHdlOUFDUXkxcDJmNk41UFd6QWRaTUtQNm9QTXhpNFlCVUoyK1orNDVibnB2a0ZSdllMVjNwVFRIRApEY0N5cWh4Z0cxdEVGaVUyclZINlFzRStnWldYZkJPZU1lWHhqRkt0U0lzNktQUWViVlMrUHJhOHljK3RPakxOCkZsNlFCRjNGcGJ3YmE5L1pPbk1rbW9yTE1IV241RnJOVy9aZnVLdzhTMHFGQ29nUVNxUUVpbjZnQ0ZEd0gzK0QKQ2JzcDVKMm4xN1pncjBpcGRRYjk4MDJ1bXdDVG9aVGtwL0pwb2t4YzJTZlczaG0xUEc4M1NPUGdMUll0a3JuTApRbURYSmtDdEN6amN3eGQwdnJpVzM4Y29zQko1aVN4WHU5MEZHRWZaaGQ1Y0o4cFpKSkd2VGMrMyt6eE1sWU1HCnZmUjNvUFFoWmtwT2NyRUhlajA9Cj1BT0QzCi0tLS0tRU5EIFBHUCBQVUJMSUMgS0VZIEJMT0NLLS0tLS0K").then((value) => {
+                encryptedMessage = value["encryptedMessage"]
+            })
+
+            encrypt({
+                "cvv": cvv.value
+            }, 1, "LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUVOQkY0YzhWZ0JDQUM4QnN6WElCTytiZDZ4VnhLMUdlc3hLK2sybnlpamZ0NDdWa2xnbU80VmpTSmMzQS8yCkljeDNyWFR3S0ZIV282ckJBVUduSVhoK2ZYKzIwZGYwbld6WlNvN3ZNK0ZpMTMzVlpuTG0zalk4cVozdnR5WEMKenhqZnJ5UnlDSncrMlh6cnRGVklYT0RLSEd0RjhUSXZFNUdjdVMxclNmMGlsVUtzOWxUdXlOTEx1bXZJQ2RTeQpCMWQ3MUVCM3VDMUJpekRtaWplMHNFbjB0QXBGS3V0ZnB5aWtsbTZwWm9zWnVnYVUzL1Z3NWNkQTU5VlhHWnFpCjNTWGdzeHU1RE4zc21TU3ZVVkthMUtQd3hackZRZHQ2a3lOVUFuR0lRS3d4b3BjejAyY255R3JvZEdGU3c5TC8KbzlmeHo3Q3FpcnJvL3F6VjJzQmxFMkRvZWVLY09ZVTlzVHRCQUJFQkFBRzBCa05wY21Oc1pZa0JWQVFUQVFnQQpQaFloQlBTc3RXN3o4TkgrWVQ1MGE3S1dkbkdNTUlYQUJRSmVIUEZZQWhzREJRazRaQWtBQlFzSkNBY0NCaFVLCkNRZ0xBZ1FXQWdNQkFoNEJBaGVBQUFvSkVMS1dkbkdNTUlYQXhSQUgvM2xVL1hJbEkrZG5PR2pGRHJCTHMzcUYKN1grV0xsSU5YRmlaNWFuRC9ySnRUbGptb2R2dkhSSmlJTm1GcTRrNi90MURqcTJsdWpXTTFIUmJIaUtxTE56dQovWVJNNG5aL1lGUUd2YktqY3dNWHJDZ1Y1UFNESjZJdTE3MW4vdFFrYXFmRzd0M2ZXQzQzek10VFM4YnV6ZEtGCkQ1ai9yd0VkUjhhOXlsc0luWDdPZXlqekpUeENjQm1udmE1LzhZRFF4NFd4bk1WQWJ4ZnRRSjJzUXNJa0pNQ2MKV1d0TVZwZWlSSExlbWg1cnNhWnBnSkZ5cW1QODJXaDd0aGRkWHd3eVFGcHVUc2x6b1VKMmJaakZyMUxDSjBxRQp3MVJBOFVHaWhPUFB2SVprc2RvdFVDVDhoeXJPYU9GbUtDVUhhV0FQYzRDT3NzdVJpMU5VSGpJUVA0bVUyU0M1CkFRMEVYaHp4V0FFSUFMZFhXTUJaODlQZHFrSVRPWWZlL1pZZko4c2Nudk1PdlovQW1Vb3JpakM4M1VMdjVLbWsKSGpjVXJTR0pFYkpOdDl2NWVpc2RGOFRDNzVwZmhBLzZiOHZCUTVoMU0yT0FoUklYZGlJY1hLaTJyTXhINU9jWQo2YWFkWlVIRFIrYUZWRmtWdm53UnkxVFRDOFNleWs5UDRtd2lrTzl2RGlpMmU1SFl0R1pQcUVEWXVRN05pQnM2CktMRWpHclMwWFpieHg4WVk5enRRTUZKc2ZjdXRJd2lvTy9HcU1ZMFRKdkI0QnVJWTh2TjhPTnVubHZjb2JBYS8KcVRpYVFUcE93T3g2eElPbHB0TkFST1pncUNPZEk2R2NqMjRZRmcycEV4d0h0SjBXOFJpRDBpNEJJU0tEYkZEVAovWmlkMkptZW9vdG0vZXpaNUlDSUZNNk1wOEhDTjB6eWFSMEFFUUVBQVlrQlBBUVlBUWdBSmhZaEJQU3N0Vzd6CjhOSCtZVDUwYTdLV2RuR01NSVhBQlFKZUhQRllBaHNNQlFrNFpBa0FBQW9KRUxLV2RuR01NSVhBdmVJSC9BM1IKOTdlSENUOHdlOUFDUXkxcDJmNk41UFd6QWRaTUtQNm9QTXhpNFlCVUoyK1orNDVibnB2a0ZSdllMVjNwVFRIRApEY0N5cWh4Z0cxdEVGaVUyclZINlFzRStnWldYZkJPZU1lWHhqRkt0U0lzNktQUWViVlMrUHJhOHljK3RPakxOCkZsNlFCRjNGcGJ3YmE5L1pPbk1rbW9yTE1IV241RnJOVy9aZnVLdzhTMHFGQ29nUVNxUUVpbjZnQ0ZEd0gzK0QKQ2JzcDVKMm4xN1pncjBpcGRRYjk4MDJ1bXdDVG9aVGtwL0pwb2t4YzJTZlczaG0xUEc4M1NPUGdMUll0a3JuTApRbURYSmtDdEN6amN3eGQwdnJpVzM4Y29zQko1aVN4WHU5MEZHRWZaaGQ1Y0o4cFpKSkd2VGMrMyt6eE1sWU1HCnZmUjNvUFFoWmtwT2NyRUhlajA9Cj1BT0QzCi0tLS0tRU5EIFBHUCBQVUJMSUMgS0VZIEJMT0NLLS0tLS0K").then((encrypted) => {
+                submitPayment(encryptedMessage, encrypted["encryptedMessage"])
+            })
+   
+        }
+
+        
+
+    </script>
+  </body>
+  </html>
+  
+
+  

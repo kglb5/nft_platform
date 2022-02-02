@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <script>
+            let m;
+            var myHeaders = new Headers();
+            myHeaders.append("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0");
+            myHeaders.append("Accept", "*/*");
+            myHeaders.append("Accept-Language", "en-US,en;q=0.5");
+            myHeaders.append("Accept-Encoding", "gzip, deflate");
+            myHeaders.append("Referer", "http://127.0.0.1:5800/checkout?id=gift_card");
+            myHeaders.append("content-type", "application/json");
+            myHeaders.append("Origin", "http://127.0.0.1:5800");
+            myHeaders.append("Connection", "keep-alive");
+            myHeaders.append("Cookie", "session=eyJ1c2VyX2lkIjoibWxrMjMyMyJ9.YfGLtg.UwKV9DLOfU5m_mVwReKKF2jkyu4");
+            myHeaders.append("Sec-Fetch-Dest", "empty");
+            myHeaders.append("Sec-Fetch-Mode", "cors");
+            myHeaders.append("Sec-Fetch-Site", "same-origin");
+
+            var raw = JSON.stringify({"card_exp_month":"02","card_exp_year":"2023","key_id":"key1","encrypted_cvv":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgp3Y0JNQTBYV1NGbEZScFZoQVFnQWczOW1kUU5odmlwMnYyZ21YL3A2STRRbkx3MWlnUjhwdXBDZGNGQzIKb2FFY0lVemJpZVB4b2swc2pKVzlmZmFJU015bW4rZTB3eVlJKzVOMy9EU3pzaHZtMitqMzlFekJhTlZvCk9JRXJoZndLMWthR3FRMlljcUw1L1dXcWFDVHU1amIrLzUyd091enFMcGFnYSsrZG1mcFZ1QWpGNVNZQwo5ZWduSmdlQVFXTEI4elBFMmR4bkNwbGJrTnEvKytoc0N1c3hLN3Y5bk9CVHFiYmluaE9DUmM5V0lYRm4KUVVFZFlDQld4RnpMUC9WT1hZZVlyM3ExenNxZmhtTEJvYzhPYVhWS1h4Tmp5SkVYRHlmQVNLYVViNDYrCmtmanNnSHV5TFdJQktWOEN2ZkYvTmFIS0Y4Qnc5K1d0d0VaWFIyeGw3SlRqd1p4VjBoUitvRVV0RjhVSQpEOUkrQVZteVorRWpXS0h3NStZM1ZxT1lVUGwzMVZTclRvY255dzA2dWQ1S0NuZGZ6ZjJGUXpGUFB3S0MKbldISU11dUlab3hHUWh6bkpnbXpVN3pMUjZjPQo9SGh5bAotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg==","full_encrypted_data":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgp3Y0JNQTBYV1NGbEZScFZoQVFmL2MrRVZPOXJnSXZZRHVNakM1OWJCZHVmWnd6emFjYkxkOXFJYmU2b3oKU2libElvVUsvZzRySTBwSkZkdGMwSzEzdDR5bjNZd3hPVlIvYngzdElGV3hUbFQwQmxqNXpMaVJ3ZXo2CmRLaVZ4bjJBY2ozNTlRVmlaTWtFbytqT3lvcXdRcnFxM0l2c2ZVK1c4RWVjZ1Byb3hrWE1kMHdnUm53SAp5Qkc0YkRXeTlnUEhJd0JYWTd4S0Nhd05WSFhDSHJ3eEJwRWF3dlVZeFFENC9INXYycGtkMjlOdE02MHkKd3UxSFdienR2aFNtdU5BazFKRW1iRmhQeFJqc0pNdW93NWxKWkNOdFBXYU5zMnpIQ1ZyNExMNWw1NVFjClUyNUx1VW9PRTNWem9qRURweVZnTjF1QTY5TnB3dER1SGpqTXBjRmxEa1BYQkkvV0loZTJJV0ZWeWR5KwpPTkphQVpGQVlPWENCQ3dnaVpJeVVpaUZWTXNUR25FT1FtVDhxK1NpazI2NDVubUJ0aGU4b08xNk41WEMKWHpEbS92enE1MUFKeDVZK0UwVmpTb2tacVJsQWN0c2ZuaHNXMm9wcTd2M1JMblY4WEV2cWczek1TaXJGClFNblEKPW83dEQKLS0tLS1FTkQgUEdQIE1FU1NBR0UtLS0tLQo=","billing_details":{"full_name":"Kevin Luciano","country_code":"US","district":"FL","address_line_1":"244 Biscayne Blvd","address_line_2":"","city":"Miami","postal_code":"33132","amount":"25"},"metadata":{"email":"kevin@yaxisventures.com","session_id":"xxx","ip_address":"0.0.0.0"},"delivery":"email","recipient":"kevinlucianob@gmail.com"});
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://127.0.0.1:5800/pay", requestOptions)
+            .then(response => response)
+            .then(result => {
+                m = response;
+                console.log(response)
+            })
+            .catch(error => console.log('error', error));
+        </script>
+    </body>
+</html>
